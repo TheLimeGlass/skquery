@@ -21,7 +21,9 @@ Changes:
 - Fixed Time Relative not being able to be reset
 - Fixed fireworks
 - Fixed pop firework effect but removed clientside ability. New syntax:
-    [CODE=SKRIPT](detonate|pop) %fireworkeffects% at %locations%[/CODE]
+```
+(detonate|pop) %fireworkeffects% at %locations%
+```
 - Added the ability to do multiple lamba evaluates. New syntax:
 ```
 do [%-number% time[s]] %lambda%
