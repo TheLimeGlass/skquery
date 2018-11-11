@@ -14,7 +14,7 @@ public class EvtCustomProperties extends SkriptEvent {
     private String execute;
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Literal<?>[] args, int matchedPattern, SkriptParser.ParseResult parseResult) {
         String s = ((Literal<String>) args[0]).getSingle();
         String r = ((Literal<String>) args[1]).getSingle();

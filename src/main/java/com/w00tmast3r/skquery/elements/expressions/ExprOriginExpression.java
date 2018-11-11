@@ -8,11 +8,9 @@ import ch.njol.skript.lang.Literal;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.elements.events.lang.CustomPropertyExpressionEvent;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
 
 @Patterns("%*classinfo% origin expression")
@@ -49,8 +47,8 @@ public class ExprOriginExpression extends SimpleExpression<Object> {
         return "hi";
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         if (!ScriptLoader.isCurrentEvent(CustomPropertyExpressionEvent.class)) {
             Skript.error("Origin expression can only be read from custom properties.");

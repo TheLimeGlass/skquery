@@ -4,10 +4,8 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
 
 import java.math.BigInteger;
@@ -32,6 +30,13 @@ public class ExprComplicatedMath extends SimpleExpression<Number> {
 
     private Expression<Number> arg;
     private int math;
+
+    private static BigInteger factorial(int num) {
+        BigInteger fact = BigInteger.ONE;
+        for (int i = 1; i <= num; i++)
+            fact = fact.multiply(BigInteger.valueOf(i));
+        return fact;
+    }
 
     @Override
     protected Number[] get(Event event) {
@@ -101,17 +106,10 @@ public class ExprComplicatedMath extends SimpleExpression<Number> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         arg = (Expression<Number>) expressions[0];
         math = i;
         return true;
-    }
-
-    private static BigInteger factorial(int num) {
-        BigInteger fact = BigInteger.ONE;
-        for (int i = 1; i <= num; i++)
-            fact = fact.multiply(BigInteger.valueOf(i));
-        return fact;
     }
 }

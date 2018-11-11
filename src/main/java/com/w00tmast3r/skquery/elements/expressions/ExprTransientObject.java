@@ -8,19 +8,17 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.elements.events.lang.FunctionEvent;
 import com.w00tmast3r.skquery.skript.TransEventObjects;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
 
 @Patterns("transient [object] %string%")
 public class ExprTransientObject extends SimpleExpression<Object> {
 
     @SuppressWarnings("unused")
-	private Expression<String> id;
+    private Expression<String> id;
 
     @Override
     protected Object[] get(Event e) {
@@ -43,7 +41,7 @@ public class ExprTransientObject extends SimpleExpression<Object> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         if (!ScriptLoader.isCurrentEvent(FunctionEvent.class)) {
             Skript.error("Transient objects can only be  in functions", ErrorQuality.SEMANTIC_ERROR);

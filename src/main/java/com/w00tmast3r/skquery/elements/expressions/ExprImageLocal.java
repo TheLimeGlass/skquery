@@ -5,10 +5,8 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
 
 import javax.imageio.ImageIO;
@@ -49,7 +47,7 @@ public class ExprImageLocal extends SimpleExpression<BufferedImage> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         url = (Expression<String>) expressions[0];
         return true;

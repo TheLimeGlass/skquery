@@ -2,12 +2,10 @@ package com.w00tmast3r.skquery.elements.expressions;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
-
 import com.w00tmast3r.skquery.api.PropertyFrom;
 import com.w00tmast3r.skquery.api.PropertyTo;
 import com.w00tmast3r.skquery.api.UsePropertyPatterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Minecart;
 import org.bukkit.event.Event;
@@ -39,15 +37,15 @@ public class ExprMaxSpeed extends SimplePropertyExpression<Entity, Number> {
 
     @Override
     public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-        Number n = delta[0] == null || ((Number) delta[0]).doubleValue() < 0 ? 0 : (Number) delta[0] ;
+        Number n = delta[0] == null || ((Number) delta[0]).doubleValue() < 0 ? 0 : (Number) delta[0];
         switch (mode) {
             case SET:
-                for (Entity en : getExpr().getAll(e))  {
+                for (Entity en : getExpr().getAll(e)) {
                     if (en instanceof Minecart) ((Minecart) en).setMaxSpeed(n.doubleValue());
                 }
                 break;
             case RESET:
-                for (Entity en : getExpr().getAll(e))  {
+                for (Entity en : getExpr().getAll(e)) {
                     if (en instanceof Minecart) ((Minecart) en).setMaxSpeed(1);
                 }
             case ADD:

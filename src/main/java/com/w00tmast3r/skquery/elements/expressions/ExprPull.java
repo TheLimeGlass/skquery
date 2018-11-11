@@ -5,12 +5,10 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
+import com.w00tmast3r.skquery.api.Patterns;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Event;
-
-import com.w00tmast3r.skquery.api.Patterns;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +23,7 @@ public class ExprPull extends SimpleExpression<String> {
     protected String[] get(Event event) {
         String c = cfg.getSingle(event);
         String p = path.getSingle(event);
-        if(c == null || p == null) return null;
+        if (c == null || p == null) return null;
         File file = new File(Skript.getInstance().getDataFolder() + "/scripts/" + c + ".yml");
         try {
             file.createNewFile();
@@ -56,7 +54,7 @@ public class ExprPull extends SimpleExpression<String> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         path = (Expression<String>) expressions[0];
         cfg = (Expression<String>) expressions[1];

@@ -25,12 +25,12 @@ public class CustomPropertyExpressionEvent extends Event implements MethodEvent,
         this.superEvent = superEvent;
     }
 
-    @Override
-    public HandlerList getHandlers() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    public static HandlerList getHandlerList() {
+    @Override
+    public HandlerList getHandlers() {
         return handlers;
     }
 
@@ -40,7 +40,7 @@ public class CustomPropertyExpressionEvent extends Event implements MethodEvent,
     }
 
     @Override
-    public Expression<?>[] getArgs(){
+    public Expression<?>[] getArgs() {
         return args;
     }
 
@@ -54,14 +54,15 @@ public class CustomPropertyExpressionEvent extends Event implements MethodEvent,
     }
 
     @Override
-    public Event getSuperEvent() {
-        return superEvent;
+    public void setReturn(Object[] returnValue) {
+        if (returnValue.getClass().getComponentType().isAssignableFrom(expectedOutput)) this.returnValue = returnValue;
+        else
+            Skript.error(Collect.toString(returnValue) + " is not of the expected type, " + expectedOutput.getSimpleName());
     }
 
     @Override
-    public void setReturn(Object[] returnValue) {
-        if (returnValue.getClass().getComponentType().isAssignableFrom(expectedOutput)) this.returnValue = returnValue;
-        else Skript.error(Collect.toString(returnValue) + " is not of the expected type, " + expectedOutput.getSimpleName());
+    public Event getSuperEvent() {
+        return superEvent;
     }
 
     public ExprCustomPropertyExpression.Pattern getPattern() {

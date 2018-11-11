@@ -20,5 +20,5 @@ public class TabCompletion implements TabCompleter {
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled()) return null;
         return event.getResult();
-}
+    }
 }

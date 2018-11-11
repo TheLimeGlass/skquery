@@ -8,13 +8,11 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.TriggerItem;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.elements.events.lang.FunctionEvent;
 import com.w00tmast3r.skquery.elements.events.lang.ReturnEvent;
-
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
@@ -41,7 +39,7 @@ public class EffReturn extends Effect {
 
     @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        if(!ScriptLoader.isCurrentEvent(FunctionEvent.class)) {
+        if (!ScriptLoader.isCurrentEvent(FunctionEvent.class)) {
             Skript.error("Return effects can only be used inside functions", ErrorQuality.SEMANTIC_ERROR);
             return false;
         }

@@ -4,14 +4,12 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
-import org.bukkit.Bukkit;
-import org.bukkit.event.Event;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Event;
 
 @Name("Clear Server Recipes")
 @Description("Clears all recipes registered in the server. Use ((EffClearRecipe)this effect) to clear individual recipes.")

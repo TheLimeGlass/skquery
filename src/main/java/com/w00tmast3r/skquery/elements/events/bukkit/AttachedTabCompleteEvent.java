@@ -24,6 +24,10 @@ public class AttachedTabCompleteEvent extends Event implements Cancellable {
         this.args = args;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
+
     public CommandSender getSender() {
         return sender;
     }
@@ -42,10 +46,6 @@ public class AttachedTabCompleteEvent extends Event implements Cancellable {
 
     @Override
     public HandlerList getHandlers() {
-        return handlers;
-    }
-
-    public static HandlerList getHandlerList() {
         return handlers;
     }
 

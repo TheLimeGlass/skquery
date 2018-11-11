@@ -8,7 +8,6 @@ import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.elements.effects.base.Pragma;
 import com.w00tmast3r.skquery.util.CancellableBukkitTask;
-
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
@@ -21,7 +20,6 @@ import java.util.concurrent.*;
 @Patterns("$ thread")
 public class EffOptionThread extends Pragma {
 
-    private final ExecutorService staticThreadPool = Executors.newFixedThreadPool(10);
     private static Method walkMethod;
 
     static {
@@ -32,6 +30,8 @@ public class EffOptionThread extends Pragma {
             e.printStackTrace();
         }
     }
+
+    private final ExecutorService staticThreadPool = Executors.newFixedThreadPool(10);
 
     @Override
     protected TriggerItem walk(final Event e) {

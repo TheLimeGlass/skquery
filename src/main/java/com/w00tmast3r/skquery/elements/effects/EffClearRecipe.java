@@ -5,13 +5,11 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Reflection;
-
 import org.bukkit.event.Event;
 
 import java.lang.reflect.InvocationTargetException;
@@ -45,7 +43,7 @@ public class EffClearRecipe extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         items = (Expression<ItemType>) expressions[0];
         return true;

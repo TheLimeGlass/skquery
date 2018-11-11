@@ -6,7 +6,6 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.iterator.EmptyIterator;
 import ch.njol.util.coll.iterator.IteratorIterable;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.custom.region.CuboidIterator;
 import org.bukkit.Location;
@@ -26,9 +25,9 @@ public class ExprBlockCube extends SimpleExpression<Block> {
     protected Block[] get(Event event) {
         Location p1 = pos1.getSingle(event);
         Location p2 = pos2.getSingle(event);
-        if(p1 == null || p2 == null) return null;
+        if (p1 == null || p2 == null) return null;
         List<Block> list = new ArrayList<>();
-        for(Block b : new IteratorIterable<>(iterator(event))){
+        for (Block b : new IteratorIterable<>(iterator(event))) {
             list.add(b);
         }
         return list.toArray(new Block[list.size()]);
@@ -50,7 +49,7 @@ public class ExprBlockCube extends SimpleExpression<Block> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         pos1 = (Expression<Location>) expressions[0];
         pos2 = (Expression<Location>) expressions[1];
@@ -66,7 +65,7 @@ public class ExprBlockCube extends SimpleExpression<Block> {
     public Iterator<Block> iterator(Event e) {
         Location p1 = pos1.getSingle(e);
         Location p2 = pos2.getSingle(e);
-        if(p1 == null || p2 == null) return new EmptyIterator<>();
+        if (p1 == null || p2 == null) return new EmptyIterator<>();
         return new CuboidIterator(p1, p2);
     }
 }

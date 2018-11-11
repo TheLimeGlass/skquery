@@ -5,11 +5,9 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
 
 
@@ -18,10 +16,10 @@ import org.bukkit.event.Event;
 public class ExprValues extends SimpleExpression<String> {
 
     @SuppressWarnings("rawtypes")
-	Expression<ClassInfo> cInfo;
+    Expression<ClassInfo> cInfo;
 
     @SuppressWarnings("rawtypes")
-	@Override
+    @Override
     protected String[] get(Event event) {
         ClassInfo c = cInfo.getSingle(event);
         return c.getC().isEnum() ? Collect.toFriendlyStringArray(c.getC().getEnumConstants()) : null;
@@ -42,8 +40,8 @@ public class ExprValues extends SimpleExpression<String> {
         return "enum values";
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         cInfo = (Expression<ClassInfo>) expressions[0];
         return true;

@@ -15,8 +15,7 @@ import java.util.Set;
  *
  * @author authorblues
  */
-public class NoteBlockReceiver implements Receiver
-{
+public class NoteBlockReceiver implements Receiver {
     private static final float VOLUME_RANGE = 10.0f;
 
     private final Set<Player> listeners;
@@ -28,15 +27,12 @@ public class NoteBlockReceiver implements Receiver
     }
 
     @Override
-    public void send(MidiMessage m, long time)
-    {
-        if (m instanceof ShortMessage)
-        {
+    public void send(MidiMessage m, long time) {
+        if (m instanceof ShortMessage) {
             ShortMessage smessage = (ShortMessage) m;
             int chan = smessage.getChannel();
 
-            switch (smessage.getCommand())
-            {
+            switch (smessage.getCommand()) {
                 case ShortMessage.PROGRAM_CHANGE:
                     int patch = smessage.getData1();
                     channelPatches.put(chan, patch);
@@ -52,8 +48,7 @@ public class NoteBlockReceiver implements Receiver
         }
     }
 
-    public void playNote(ShortMessage message)
-    {
+    public void playNote(ShortMessage message) {
         // if this isn't a NOTE_ON message, we can't play it
         if (ShortMessage.NOTE_ON != message.getCommand()) return;
 
@@ -71,8 +66,7 @@ public class NoteBlockReceiver implements Receiver
     }
 
     @Override
-    public void close()
-    {
+    public void close() {
         listeners.clear();
         channelPatches.clear();
     }

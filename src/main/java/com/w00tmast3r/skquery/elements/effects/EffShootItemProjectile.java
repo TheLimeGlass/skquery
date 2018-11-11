@@ -5,7 +5,6 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.custom.projectile.ItemProjectile;
 import org.bukkit.entity.LivingEntity;
@@ -24,8 +23,8 @@ public class EffShootItemProjectile extends Effect {
         ItemType p = projectile.getSingle(event);
         LivingEntity s = shooter.getSingle(event);
         Number n;
-        if(p == null || s == null) return;
-        if(velocity == null) n = 1;
+        if (p == null || s == null) return;
+        if (velocity == null) n = 1;
         else n = velocity.getSingle(event);
         float v = n.floatValue();
         new ItemProjectile(p.getRandom()).shoot(s, s.getLocation().getDirection().multiply(v));
@@ -37,7 +36,7 @@ public class EffShootItemProjectile extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         shooter = (Expression<LivingEntity>) expressions[0];
         projectile = (Expression<ItemType>) expressions[1];

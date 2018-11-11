@@ -5,13 +5,11 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
-import org.bukkit.block.Block;
-import org.bukkit.event.Event;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
+import org.bukkit.block.Block;
+import org.bukkit.event.Event;
 
 @Name("Set Block Without Updates")
 @Description("Set blocks to another block without causing surrounding blocks to update.")
@@ -37,7 +35,7 @@ public class EffExtendsFuncSetBlock extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         blocks = (Expression<Block>) expressions[0];
         toSet = (Expression<ItemType>) expressions[1];

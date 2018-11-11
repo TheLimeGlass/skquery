@@ -9,19 +9,17 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-
+import com.w00tmast3r.skquery.api.Patterns;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.server.ServerListPingEvent;
-
-import com.w00tmast3r.skquery.api.Patterns;
 
 
 @Patterns("[the] [max] player count")
 public class ExprFakeMaxPlayers extends SimpleExpression<Number> {
     @Override
     protected Number[] get(Event event) {
-        return new Number[] {Bukkit.getMaxPlayers()};
+        return new Number[]{Bukkit.getMaxPlayers()};
     }
 
     @Override
@@ -41,7 +39,7 @@ public class ExprFakeMaxPlayers extends SimpleExpression<Number> {
 
     @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        if(!ScriptLoader.isCurrentEvent(ServerListPingEvent.class)) {
+        if (!ScriptLoader.isCurrentEvent(ServerListPingEvent.class)) {
             Skript.error("Cannot use max players expression outside of a server ping event", ErrorQuality.SEMANTIC_ERROR);
             return false;
         }
@@ -53,9 +51,9 @@ public class ExprFakeMaxPlayers extends SimpleExpression<Number> {
         ((ServerListPingEvent) e).setMaxPlayers(((Number) delta[0]).intValue());
     }
 
-	@Override
+    @Override
     public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        if(mode == Changer.ChangeMode.SET) return CollectionUtils.array(Number.class);
+        if (mode == Changer.ChangeMode.SET) return CollectionUtils.array(Number.class);
         return null;
     }
 }

@@ -4,10 +4,8 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
-import org.bukkit.event.Event;
-
 import com.w00tmast3r.skquery.api.Patterns;
+import org.bukkit.event.Event;
 
 
 @Patterns("null")

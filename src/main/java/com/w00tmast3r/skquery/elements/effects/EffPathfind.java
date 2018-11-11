@@ -4,13 +4,11 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Reflection;
-
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -32,7 +30,7 @@ public class EffPathfind extends Effect {
     protected void execute(Event event) {
         Location l = loc.getSingle(event);
         Number s = speed.getSingle(event);
-        if(l == null || s == null) return;
+        if (l == null || s == null) return;
         for (LivingEntity e : entity.getAll(event)) {
             if (e instanceof Player) continue;
             try {
@@ -51,7 +49,7 @@ public class EffPathfind extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         entity = (Expression<LivingEntity>) expressions[0];
         loc = (Expression<Location>) expressions[1];

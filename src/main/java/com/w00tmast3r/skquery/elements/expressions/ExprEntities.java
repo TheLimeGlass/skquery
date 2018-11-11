@@ -4,14 +4,12 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
-import org.bukkit.Chunk;
-import org.bukkit.entity.Entity;
-import org.bukkit.event.Event;
-
 import com.w00tmast3r.skquery.api.PropertyFrom;
 import com.w00tmast3r.skquery.api.PropertyTo;
 import com.w00tmast3r.skquery.api.UsePropertyPatterns;
+import org.bukkit.Chunk;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.Event;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,7 +46,7 @@ public class ExprEntities extends SimpleExpression<Entity> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         chunk = (Expression<Chunk>) expressions[0];
         return true;

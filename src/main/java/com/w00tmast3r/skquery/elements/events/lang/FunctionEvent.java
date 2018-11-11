@@ -16,12 +16,12 @@ public class FunctionEvent extends Event implements MethodEvent {
         this.invoker = invoker;
     }
 
-    @Override
-    public HandlerList getHandlers() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    public static HandlerList getHandlerList() {
+    @Override
+    public HandlerList getHandlers() {
         return handlers;
     }
 
@@ -34,7 +34,7 @@ public class FunctionEvent extends Event implements MethodEvent {
         return cause;
     }
 
-    public Object[] getParams(){
+    public Object[] getParams() {
         return params;
     }
 }

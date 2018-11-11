@@ -2,12 +2,10 @@ package com.w00tmast3r.skquery.elements.expressions;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
-
 import com.w00tmast3r.skquery.api.PropertyFrom;
 import com.w00tmast3r.skquery.api.PropertyTo;
 import com.w00tmast3r.skquery.api.UsePropertyPatterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -43,12 +41,12 @@ public class ExprFlightMode extends SimplePropertyExpression<Player, Boolean> {
         boolean b = delta != null && (Boolean) delta[0];
         switch (mode) {
             case SET:
-                for (Player p : getExpr().getAll(e))  {
+                for (Player p : getExpr().getAll(e)) {
                     p.setAllowFlight(b);
                 }
                 break;
             case RESET:
-                for (Player p : getExpr().getAll(e))  {
+                for (Player p : getExpr().getAll(e)) {
                     p.setAllowFlight(p.getGameMode() == GameMode.CREATIVE);
                 }
             case ADD:

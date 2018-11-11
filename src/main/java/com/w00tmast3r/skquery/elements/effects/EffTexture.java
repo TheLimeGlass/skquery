@@ -4,11 +4,9 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
+import com.w00tmast3r.skquery.api.Patterns;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-
-import com.w00tmast3r.skquery.api.Patterns;
 
 
 @Patterns("send [(resource|texture)] pack from %string% to %players%")
@@ -20,8 +18,8 @@ public class EffTexture extends Effect {
     @Override
     protected void execute(Event event) {
         String u = url.getSingle(event);
-        if(u == null) return;
-        for(Player p : target.getAll(event)) {
+        if (u == null) return;
+        for (Player p : target.getAll(event)) {
             p.setResourcePack(u);
         }
     }
@@ -32,7 +30,7 @@ public class EffTexture extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         url = (Expression<String>) expressions[0];
         target = (Expression<Player>) expressions[1];

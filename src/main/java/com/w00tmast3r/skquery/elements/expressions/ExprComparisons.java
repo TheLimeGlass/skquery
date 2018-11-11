@@ -8,10 +8,8 @@ import ch.njol.skript.lang.Variable;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.registrations.Comparators;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
 
 @Patterns({"%object%[ ]===[ ]%object%",
@@ -22,8 +20,8 @@ import org.bukkit.event.Event;
         "%object%[ ]\\<=[ ]%object%"})
 public class ExprComparisons extends SimpleExpression<Boolean> {
 
-    private Expression<?> first, second;
     int match;
+    private Expression<?> first, second;
 
     @Override
     protected Boolean[] get(Event e) {
@@ -61,7 +59,7 @@ public class ExprComparisons extends SimpleExpression<Boolean> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         first = exprs[0];
         second = exprs[1];

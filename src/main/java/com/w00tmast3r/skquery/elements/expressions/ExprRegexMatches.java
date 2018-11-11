@@ -4,10 +4,8 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
-import org.bukkit.event.Event;
-
 import com.w00tmast3r.skquery.api.Patterns;
+import org.bukkit.event.Event;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -51,7 +49,7 @@ public class ExprRegexMatches extends SimpleExpression<String> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         group = (Expression<Number>) exprs[0];
         text = (Expression<String>) exprs[1];

@@ -4,13 +4,11 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
+import com.w00tmast3r.skquery.api.Patterns;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
-
-import com.w00tmast3r.skquery.api.Patterns;
 
 import java.util.Arrays;
 
@@ -23,11 +21,11 @@ public class ExprBookOf extends SimpleExpression<ItemStack> {
     @Override
     protected ItemStack[] get(Event event) {
         String t = type.getSingle(event);
-        if(t == null) return null;
+        if (t == null) return null;
         String[] invStr = t.split(";", 4);
         if (invStr.length != 4) return null;
         ItemStack target = new ItemStack(Material.WRITTEN_BOOK);
-        BookMeta meta = (BookMeta)target.getItemMeta();
+        BookMeta meta = (BookMeta) target.getItemMeta();
         meta.setDisplayName(invStr[0]);
         meta.setAuthor(invStr[1]);
         meta.setLore(Arrays.asList(invStr[2].split("\\|\\|")));
@@ -52,7 +50,7 @@ public class ExprBookOf extends SimpleExpression<ItemStack> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         type = (Expression<String>) expressions[0];
         return true;

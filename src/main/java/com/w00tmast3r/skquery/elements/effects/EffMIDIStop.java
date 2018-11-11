@@ -4,7 +4,6 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
@@ -23,9 +22,9 @@ public class EffMIDIStop extends Effect {
     @Override
     protected void execute(Event event) {
         String m = midi.getSingle(event);
-        if(m == null) return;
+        if (m == null) return;
         if (MidiUtil.isPlaying(m)) {
-        	MidiUtil.stopMidi(m);
+            MidiUtil.stopMidi(m);
         }
     }
 
@@ -35,7 +34,7 @@ public class EffMIDIStop extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         midi = (Expression<String>) expressions[0];
         return true;

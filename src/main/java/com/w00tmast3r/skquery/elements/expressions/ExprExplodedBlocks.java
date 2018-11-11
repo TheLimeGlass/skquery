@@ -6,12 +6,10 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
+import com.w00tmast3r.skquery.api.Patterns;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityExplodeEvent;
-
-import com.w00tmast3r.skquery.api.Patterns;
 
 import java.util.List;
 

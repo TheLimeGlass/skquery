@@ -5,12 +5,10 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.util.Slot;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.PropertyFrom;
 import com.w00tmast3r.skquery.api.PropertyTo;
 import com.w00tmast3r.skquery.api.UsePropertyPatterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -45,10 +43,10 @@ public class ExprItemInInventory extends SimpleExpression<Slot> {
                 return "slot " + s + "of " + h.getHolder();
             }
 
-			@SuppressWarnings("unused")
-			public boolean isSameSlot(Slot s) {
-				return false;
-			}
+            @SuppressWarnings("unused")
+            public boolean isSameSlot(Slot s) {
+                return false;
+            }
         });
     }
 
@@ -68,7 +66,7 @@ public class ExprItemInInventory extends SimpleExpression<Slot> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         if (i == 0) {
             slot = (Expression<Number>) expressions[0];

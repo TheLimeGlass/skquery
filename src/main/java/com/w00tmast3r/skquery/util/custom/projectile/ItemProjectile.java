@@ -31,7 +31,7 @@ public class ItemProjectile {
         CancellableBukkitTask taskBukkit = new CancellableBukkitTask() {
             @Override
             public void run() {
-                if(!proj.isValid() || (proj.getNearbyEntities(0, 0, 0).size() != 0 && !proj.getNearbyEntities(0, 0, 0).contains(shooter)) || proj.isOnGround()) {
+                if (!proj.isValid() || (proj.getNearbyEntities(0, 0, 0).size() != 0 && !proj.getNearbyEntities(0, 0, 0).contains(shooter)) || proj.isOnGround()) {
                     Bukkit.getPluginManager().callEvent(new ItemProjectileHitEvent(proj, shooter));
                     proj.remove();
                     cancel();

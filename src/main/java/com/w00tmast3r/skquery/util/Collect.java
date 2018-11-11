@@ -27,7 +27,7 @@ public class Collect {
     }
 
     @SuppressWarnings("unchecked")
-	public static <T> T[] newArray(Class<?> type, int size) {
+    public static <T> T[] newArray(Class<?> type, int size) {
         return (T[]) Array.newInstance(type, size);
     }
 
@@ -69,7 +69,7 @@ public class Collect {
     }
 
     @SuppressWarnings("resource")
-	public static String textPart(InputStream is) {
+    public static String textPart(InputStream is) {
         if (is == null) return "";
         try (Scanner s = new Scanner(is).useDelimiter("\\A")) {
             return s.hasNext() ? s.next() : "";

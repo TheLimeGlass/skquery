@@ -4,12 +4,10 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
+import com.w00tmast3r.skquery.api.Patterns;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.event.Event;
-
-import com.w00tmast3r.skquery.api.Patterns;
 
 
 @Patterns("play %sound% at %locations% with pitch %number%")
@@ -24,8 +22,8 @@ public class EffSound extends Effect {
         Sound s = sound.getSingle(event);
         Location[] l = loc.getAll(event);
         float p = pit.getSingle(event).floatValue();
-        if(s == null || l == null) return;
-        for(Location fl : l){
+        if (s == null || l == null) return;
+        for (Location fl : l) {
             fl.getWorld().playSound(fl, s, 1, p);
         }
     }
@@ -36,7 +34,7 @@ public class EffSound extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         sound = (Expression<Sound>) expressions[0];
         loc = (Expression<Location>) expressions[1];

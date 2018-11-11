@@ -37,46 +37,46 @@ public class EffVirtualChestSynthesizer extends Effect implements Listener {
         final String vIN = virtualInventoryName.getSingle(event);
         Number r1 = rows.getSingle(event);
         final Player t = target.getSingle(event);
-        if(vIN == null || vIS == null || t == null || r1 == null) return;
+        if (vIN == null || vIS == null || t == null || r1 == null) return;
         final int r = r1.intValue() * 9;
         final String[] invStr = vIS.split(";");
         final Inventory inv = Bukkit.createInventory(null, r, vIN);
         t.openInventory(inv);
         Bukkit.getScheduler().runTaskLater(SkQuery.getInstance(), new Runnable() {
             @SuppressWarnings("unchecked")
-			public void run() {
+            public void run() {
                 boolean isCurrentlyFlagging = true;
                 String currentOperation = "";
                 List<String>[] commands = new ArrayList[r];
                 //String commands[] = new String[r];
                 int node = 0;
-                for(int i = 0; i < invStr.length; i++){
-                    if(isCurrentlyFlagging){
+                for (int i = 0; i < invStr.length; i++) {
+                    if (isCurrentlyFlagging) {
                         currentOperation = invStr[i];
                         isCurrentlyFlagging = false;
                     } else {
-                        if(currentOperation.equalsIgnoreCase("s")){        // node reassignment
-                            if(Integer.parseInt(invStr[i]) - 1 > r){
+                        if (currentOperation.equalsIgnoreCase("s")) {        // node reassignment
+                            if (Integer.parseInt(invStr[i]) - 1 > r) {
                                 Bukkit.getLogger().warning("Could not pass node assignment, will not attempt to allocate a slot id greater than rows.");
                                 t.openInventory(Bukkit.createInventory(null, 9, ChatColor.DARK_RED + "" + ChatColor.BOLD + "Error"));
                                 return;
                             } else {
                                 node = Integer.parseInt(invStr[i]) - 1;
                             }
-                        } else if(currentOperation.equalsIgnoreCase("i")){ // stack reassignment
+                        } else if (currentOperation.equalsIgnoreCase("i")) { // stack reassignment
                             inv.setItem(node, SkriptParser.parseLiteral(invStr[i], ItemType.class, ParseContext.DEFAULT).getSingle().getRandom());
-                        } else if(currentOperation.equalsIgnoreCase("l")){ // lore reassignment
+                        } else if (currentOperation.equalsIgnoreCase("l")) { // lore reassignment
                             ItemStack stack = inv.getItem(node);
                             ItemMeta stackMeta = stack.getItemMeta() == null ? Bukkit.getItemFactory().getItemMeta(Material.STONE) : stack.getItemMeta();
                             stackMeta.setLore(Arrays.asList(invStr[i].split("\\|\\|")));
                             stack.setItemMeta(stackMeta);
-                        } else if(currentOperation.equalsIgnoreCase("n")){ // name reassignment
+                        } else if (currentOperation.equalsIgnoreCase("n")) { // name reassignment
                             ItemStack stack = inv.getItem(node);
                             ItemMeta stackMeta = stack.getItemMeta() == null ? Bukkit.getItemFactory().getItemMeta(Material.STONE) : stack.getItemMeta();
                             stackMeta.setDisplayName(invStr[i]);
                             stack.setItemMeta(stackMeta);
-                        } else if(currentOperation.equalsIgnoreCase("c")){ // command reassignment
-                            if(commands[node] == null) commands[node] = new ArrayList<>();
+                        } else if (currentOperation.equalsIgnoreCase("c")) { // command reassignment
+                            if (commands[node] == null) commands[node] = new ArrayList<>();
                             commands[node].add(invStr[i]);
                             //commands[node] = invStr[i];
                         } else {
@@ -87,10 +87,10 @@ public class EffVirtualChestSynthesizer extends Effect implements Listener {
                         isCurrentlyFlagging = true;
                     }
                 }
-                for(ItemStack stack : inv.getContents()) {
+                for (ItemStack stack : inv.getContents()) {
                     if (stack != null) {
                         ItemMeta stackMeta = stack.getItemMeta() == null ? Bukkit.getItemFactory().getItemMeta(Material.STONE) : stack.getItemMeta();
-                        List<String> lore =  stackMeta.getLore() == null ? new ArrayList<String>() : stackMeta.getLore();
+                        List<String> lore = stackMeta.getLore() == null ? new ArrayList<String>() : stackMeta.getLore();
                         lore.add(ChatColor.translateAlternateColorCodes('&', "&0&0&0&0&0&0&0&0"));
                         stackMeta.setLore(lore);
                         stack.setItemMeta(stackMeta);
@@ -108,7 +108,7 @@ public class EffVirtualChestSynthesizer extends Effect implements Listener {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         virtualInventorySerial = (Expression<String>) expressions[0];
         rows = (Expression<Number>) expressions[1];

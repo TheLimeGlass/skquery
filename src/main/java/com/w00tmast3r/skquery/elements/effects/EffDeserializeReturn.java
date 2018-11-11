@@ -4,7 +4,6 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
@@ -25,7 +24,7 @@ public class EffDeserializeReturn extends Effect {
     protected void execute(Event event) {
         Player p = player.getSingle(event);
         String i = inv.getSingle(event);
-        if(p == null || i == null) return;
+        if (p == null || i == null) return;
         p.getInventory().setContents(InventorySerialUtils.fromBase64(i).getContents());
     }
 
@@ -35,7 +34,7 @@ public class EffDeserializeReturn extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         player = (Expression<Player>) expressions[0];
         inv = (Expression<String>) expressions[1];

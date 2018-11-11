@@ -4,7 +4,6 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
@@ -25,7 +24,7 @@ public class EffPop extends Effect {
 
     @Override
     protected void execute(Event event) {
-        for(Location l : loc.getAll(event)){
+        for (Location l : loc.getAll(event)) {
             new FireworkFactory().location(l).effects(effects.getAll(event)).play();
         }
     }
@@ -36,7 +35,7 @@ public class EffPop extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         effects = (Expression<FireworkEffect>) expressions[0];
         loc = (Expression<Location>) expressions[1];

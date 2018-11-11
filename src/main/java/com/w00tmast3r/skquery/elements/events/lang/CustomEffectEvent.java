@@ -17,6 +17,10 @@ public class CustomEffectEvent extends Event implements MethodEvent, Pullable {
         this.superEvent = superEvent;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
+
     @Override
     public String getMatch() {
         return match;
@@ -34,10 +38,6 @@ public class CustomEffectEvent extends Event implements MethodEvent, Pullable {
 
     @Override
     public HandlerList getHandlers() {
-        return handlers;
-    }
-
-    public static HandlerList getHandlerList() {
         return handlers;
     }
 }

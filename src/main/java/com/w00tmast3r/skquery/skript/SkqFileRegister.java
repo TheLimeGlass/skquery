@@ -42,7 +42,8 @@ public class SkqFileRegister {
                 return name.toLowerCase().endsWith(".skq") && !name.startsWith("-");
             }
         };
-        fileLoop: for (File f : Collect.getFiles(new File(Skript.getInstance().getDataFolder().getAbsolutePath() + File.separator + Skript.SCRIPTSFOLDER), filter)) {
+        fileLoop:
+        for (File f : Collect.getFiles(new File(Skript.getInstance().getDataFolder().getAbsolutePath() + File.separator + Skript.SCRIPTSFOLDER), filter)) {
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(f));
                 String cTStruct = null;

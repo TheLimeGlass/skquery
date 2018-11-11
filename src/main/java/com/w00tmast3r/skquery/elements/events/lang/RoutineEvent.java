@@ -10,7 +10,7 @@ public class RoutineEvent extends Event implements MethodEvent {
     private Object[] params;
 
     public RoutineEvent(String cause, Object[] params) {
-        if(cause == null) {
+        if (cause == null) {
             this.cause = "";
             return;
         }
@@ -18,12 +18,12 @@ public class RoutineEvent extends Event implements MethodEvent {
         this.params = params;
     }
 
-    @Override
-    public HandlerList getHandlers() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    public static HandlerList getHandlerList() {
+    @Override
+    public HandlerList getHandlers() {
         return handlers;
     }
 
@@ -32,7 +32,7 @@ public class RoutineEvent extends Event implements MethodEvent {
         return cause;
     }
 
-    public Object[] getParams(){
+    public Object[] getParams() {
         return params;
     }
 }

@@ -7,13 +7,12 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Disabled;
 import com.w00tmast3r.skquery.elements.events.lang.CustomPropertyExpressionEvent;
 import com.w00tmast3r.skquery.util.BiValue;
-
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -28,6 +27,37 @@ public class ExprCustomPropertyExpression extends SimpleExpression<Object> {
     private Expression<?>[] expressions;
     private String execute;
     private BiValue<Integer, Pattern> matchedPattern;
+
+    public static void addAll(Collection<Map.Entry<BiValue<String, String>, BiValue<Object, Boolean>>> effects) {
+        for (Map.Entry<BiValue<String, String>, BiValue<Object, Boolean>> effect : effects) {
+            if (!entries.contains(effect.getKey())) {
+                register.add("[the] " + effect.getKey().getFirst() + " of %" + effect.getKey().getSecond() + "%");
+                register.add("%" + effect.getKey().getSecond() + "%'[s] " + effect.getKey().getFirst());
+                entries.add(effect.getKey());
+                custom.put(custom.size(), new BiValue<>(effect.getKey().getFirst(), effect.getValue()));
+            }
+        }
+    }
+
+    public static ArrayList<BiValue<String, String>> getEntries() {
+        return entries;
+    }
+
+    public static HashMap<Integer, BiValue<String, BiValue<Object, Boolean>>> getCustom() {
+        return custom;
+    }
+
+    public static void register() {
+        Skript.registerExpression(ExprCustomPropertyExpression.class, Object.class, ExpressionType.PROPERTY, register.toArray(new String[register.size()]));
+    }
+
+    private static BiValue<Integer, Pattern> getMeta(int matchedPattern) {
+        if ((matchedPattern & 1) == 0) {
+            return new BiValue<>(matchedPattern / 2, Pattern.TRIM_LAST);
+        } else {
+            return new BiValue<>((matchedPattern - 1) / 2, Pattern.TRIM_FIRST);
+        }
+    }
 
     @Override
     protected Object[] get(Event e) {
@@ -67,37 +97,6 @@ public class ExprCustomPropertyExpression extends SimpleExpression<Object> {
         expressions = exprs;
         execute = custom.get(this.matchedPattern.getFirst()).getFirst();
         return true;
-    }
-
-    public static void addAll(Collection<Map.Entry<BiValue<String, String>, BiValue<Object, Boolean>>> effects) {
-        for (Map.Entry<BiValue<String, String>, BiValue<Object, Boolean>> effect : effects) {
-            if (!entries.contains(effect.getKey())) {
-                register.add("[the] " + effect.getKey().getFirst() + " of %" + effect.getKey().getSecond() + "%");
-                register.add("%" + effect.getKey().getSecond() + "%'[s] " + effect.getKey().getFirst());
-                entries.add(effect.getKey());
-                custom.put(custom.size(), new BiValue<>(effect.getKey().getFirst(), effect.getValue()));
-            }
-        }
-    }
-
-    public static ArrayList<BiValue<String, String>> getEntries() {
-        return entries;
-    }
-
-    public static HashMap<Integer, BiValue<String, BiValue<Object, Boolean>>> getCustom() {
-        return custom;
-    }
-
-    public static void register() {
-        Skript.registerExpression(ExprCustomPropertyExpression.class, Object.class, ExpressionType.PROPERTY, register.toArray(new String[register.size()]));
-    }
-
-    private static BiValue<Integer, Pattern> getMeta(int matchedPattern) {
-        if ((matchedPattern & 1) == 0) {
-            return new BiValue<>(matchedPattern / 2, Pattern.TRIM_LAST);
-        } else {
-            return new BiValue<>((matchedPattern - 1) / 2, Pattern.TRIM_FIRST);
-        }
     }
 
     public static enum Pattern {

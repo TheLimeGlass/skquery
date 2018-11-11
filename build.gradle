@@ -1,5 +1,4 @@
 apply plugin: 'java-library'
-apply plugin: 'eclipse'
 
 jar.archiveName = project.name + '.jar'
 
@@ -11,35 +10,40 @@ configurations {
 repositories {
     mavenCentral()
     jcenter()
-    
+
     //Spigot
     maven {
         url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
-    
+
     //Skript
     maven {
         url "https://raw.githubusercontent.com/bensku/mvn-repo/master"
     }
+
+    //Elmakers
+    maven {
+        url "http://maven.elmakers.com/repository/"
+    }
 }
 
 dependencies {
-    
+
     //Skript
-    api (group: 'ch.njol', name: 'skript', version: '2.2-dev32') {
+    api(group: 'ch.njol', name: 'skript', version: '2.2-dev32') {
         transitive = false
-	}
-	
-	//Nullable annotation
-	compile (group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.annotation', version: '1.1.0')
-	
-	//Spigot/Bukkit
-	compile (group: 'org.spigotmc', name: 'spigot-api', version: '1.12.2-R0.1-SNAPSHOT')
+    }
+
+    //Nullable annotation
+    compile(group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.annotation', version: '1.1.0')
+
+    //Spigot/Bukkit
+    compile(group: 'org.spigotmc', name: 'spigot-api', version: '1.12.2-R0.1-SNAPSHOT')
 }
 
 jar {
     configurations.shade.each { dep ->
-        from(project.zipTree(dep)){
+        from(project.zipTree(dep)) {
             exclude 'META-INF', 'META-INF/**'
         }
     }

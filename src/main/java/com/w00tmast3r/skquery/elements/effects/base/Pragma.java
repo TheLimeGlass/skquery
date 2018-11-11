@@ -12,7 +12,8 @@ import java.io.File;
 public abstract class Pragma extends Effect {
 
     @Override
-    protected void execute(Event event) {}
+    protected void execute(Event event) {
+    }
 
     @Override
     public String toString(Event event, boolean b) {

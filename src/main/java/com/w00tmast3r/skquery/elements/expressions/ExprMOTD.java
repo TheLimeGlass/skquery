@@ -8,10 +8,8 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.server.ServerListPingEvent;
@@ -21,7 +19,7 @@ import org.bukkit.event.server.ServerListPingEvent;
 public class ExprMOTD extends SimpleExpression<String> {
     @Override
     protected String[] get(Event event) {
-        return new String[] {Bukkit.getMotd()};
+        return new String[]{Bukkit.getMotd()};
     }
 
     @Override
@@ -41,7 +39,7 @@ public class ExprMOTD extends SimpleExpression<String> {
 
     @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        if(!ScriptLoader.isCurrentEvent(ServerListPingEvent.class)) {
+        if (!ScriptLoader.isCurrentEvent(ServerListPingEvent.class)) {
             Skript.error("Cannot use motd expression outside of a server ping event", ErrorQuality.SEMANTIC_ERROR);
             return false;
         }
@@ -56,7 +54,7 @@ public class ExprMOTD extends SimpleExpression<String> {
 
     @Override
     public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        if(mode == Changer.ChangeMode.SET) return Collect.asArray(String.class);
+        if (mode == Changer.ChangeMode.SET) return Collect.asArray(String.class);
         return null;
     }
 }

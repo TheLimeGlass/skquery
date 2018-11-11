@@ -2,15 +2,11 @@ package com.w00tmast3r.skquery.elements.events;
 
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-
 import com.w00tmast3r.skquery.SkQuery;
 import com.w00tmast3r.skquery.api.AbstractTask;
 import com.w00tmast3r.skquery.elements.events.bukkit.AttachedTabCompleteEvent;
 import com.w00tmast3r.skquery.elements.events.lang.*;
 import com.w00tmast3r.skquery.util.custom.projectile.ItemProjectileHitEvent;
-
-import java.io.IOException;
-
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -32,6 +28,8 @@ import org.bukkit.event.vehicle.VehicleEntityCollisionEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.IOException;
+
 public class EventRegistry extends AbstractTask {
 
     @Override
@@ -51,14 +49,14 @@ public class EventRegistry extends AbstractTask {
         }, 0);
 
         registerEvent("Sheep Dye", SheepDyeWoolEvent.class, "sheep dye");
-        
+
         registerEvent("Horse Jump", HorseJumpEvent.class, "horse jump");
-        
+
         registerEvent("Book Editing", PlayerEditBookEvent.class, "[book] edit");
-       
+
         registerEvent("Flight Toggle", PlayerToggleFlightEvent.class, "[player] toggl(e|ing) (flight|fly)", "[player] (flight|fly) toggl(e|ing)");
-       
-        registerEvent("Inventory Click",  InventoryClickEvent.class, "inventory click");
+
+        registerEvent("Inventory Click", InventoryClickEvent.class, "inventory click");
         EventValues.registerEventValue(InventoryClickEvent.class, ItemStack.class, new Getter<ItemStack, InventoryClickEvent>() {
             @Override
             public ItemStack get(InventoryClickEvent inventoryClickEvent) {
@@ -169,9 +167,9 @@ public class EventRegistry extends AbstractTask {
         registerEvent("*Custom Property Logic", EvtCustomProperties.class, CustomPropertyExpressionEvent.class, "custom property [logic [for]] %string% of %string%");
 
         try {
-			SkQuery.getAddonInstance().loadClasses("com.w00tmast3r.skquery.elements", "events");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+            SkQuery.getAddonInstance().loadClasses("com.w00tmast3r.skquery.elements", "events");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -2,8 +2,8 @@ package com.w00tmast3r.skquery.util;
 
 public class RomanNumerals {
 
-    public static  String toRoman(int number) {
-        String roman[] = {"M","XM","CM","D","XD","CD","C","XC","L","XL","X","IX","V","IV","I"};
+    public static String toRoman(int number) {
+        String roman[] = {"M", "XM", "CM", "D", "XD", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         int arab[] = {1000, 990, 900, 500, 490, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         StringBuilder result = new StringBuilder();
         int i = 0;

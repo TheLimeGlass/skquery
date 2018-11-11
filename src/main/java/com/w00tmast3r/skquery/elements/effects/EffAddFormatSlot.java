@@ -4,7 +4,6 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
@@ -74,11 +73,13 @@ public class EffAddFormatSlot extends Effect {
         }
         if (i != null) {
             for (Player p : targets.getAll(event)) {
-                if (p.getOpenInventory().getType() != InventoryType.CRAFTING) p.getOpenInventory().setItem(s.intValue(), i);
+                if (p.getOpenInventory().getType() != InventoryType.CRAFTING)
+                    p.getOpenInventory().setItem(s.intValue(), i);
             }
         }
         for (Player p : targets.getAll(event)) {
-            if (p.getOpenInventory().getType() != InventoryType.CRAFTING) FormattedSlotManager.addRule(event, p, s.intValue(), toClone.getCopy());
+            if (p.getOpenInventory().getType() != InventoryType.CRAFTING)
+                FormattedSlotManager.addRule(event, p, s.intValue(), toClone.getCopy());
         }
     }
 
@@ -88,7 +89,7 @@ public class EffAddFormatSlot extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         slot = (Expression<Number>) expressions[0];
         targets = (Expression<Player>) expressions[1];

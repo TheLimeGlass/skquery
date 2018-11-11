@@ -7,11 +7,10 @@ import ch.njol.skript.lang.Literal;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
+
 import java.util.HashMap;
 
 @Patterns("%*classinfo% input")
@@ -19,6 +18,14 @@ public class ExprInput extends SimpleExpression<Object> {
 
     static HashMap<Event, Object> in = new HashMap<>();
     private Class<?> returnType = Object.class;
+
+    public static void setInput(Event e, Object o) {
+        in.put(e, o);
+    }
+
+    public static void removeInput(Event e) {
+        in.remove(e);
+    }
 
     @Override
     protected Object[] get(Event e) {
@@ -43,8 +50,8 @@ public class ExprInput extends SimpleExpression<Object> {
         return "input";
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         returnType = ((Literal<ClassInfo>) exprs[0]).getSingle().getC();
         return true;
@@ -62,23 +69,15 @@ public class ExprInput extends SimpleExpression<Object> {
                 ExprInput.setInput(e, delta[0]);
                 break;
             case RESET:
-            	ExprInput.removeInput(e);
+                ExprInput.removeInput(e);
             case ADD:
-            	ExprInput.setInput(e, delta[0]);
+                ExprInput.setInput(e, delta[0]);
             case REMOVE:
-            	ExprInput.removeInput(e);
+                ExprInput.removeInput(e);
             case REMOVE_ALL:
-            	ExprInput.removeInput(e);
+                ExprInput.removeInput(e);
             case DELETE:
-            	ExprInput.removeInput(e);
+                ExprInput.removeInput(e);
         }
-    }
-
-    public static void setInput(Event e, Object o) {
-        in.put(e, o);
-    }
-
-    public static void removeInput(Event e) {
-        in.remove(e);
     }
 }

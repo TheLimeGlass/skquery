@@ -11,13 +11,13 @@ import org.bukkit.event.Event;
  */
 public abstract class AbstractTask implements Runnable {
 
-	protected void registerEvent(String name, Class<? extends Event> event, String... patterns) {
-		registerEvent(name, SimpleEvent.class, event, patterns);
-	}
+    protected void registerEvent(String name, Class<? extends Event> event, String... patterns) {
+        registerEvent(name, SimpleEvent.class, event, patterns);
+    }
 
-	protected void registerEvent(String name, Class<? extends SkriptEvent> handler, Class<? extends Event> event, final String... patterns) {
-		Documentation.addEvent(event, patterns);
-		Skript.registerEvent(name, handler, event, patterns);
-	}
+    protected void registerEvent(String name, Class<? extends SkriptEvent> handler, Class<? extends Event> event, final String... patterns) {
+        Documentation.addEvent(event, patterns);
+        Skript.registerEvent(name, handler, event, patterns);
+    }
 
 }

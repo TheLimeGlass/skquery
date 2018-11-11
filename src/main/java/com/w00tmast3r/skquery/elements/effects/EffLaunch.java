@@ -4,17 +4,15 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
+import com.w00tmast3r.skquery.api.Description;
+import com.w00tmast3r.skquery.api.Examples;
+import com.w00tmast3r.skquery.api.Name;
+import com.w00tmast3r.skquery.api.Patterns;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.entity.Firework;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.meta.FireworkMeta;
-
-import com.w00tmast3r.skquery.api.Description;
-import com.w00tmast3r.skquery.api.Examples;
-import com.w00tmast3r.skquery.api.Name;
-import com.w00tmast3r.skquery.api.Patterns;
 
 @Name("Launch Fireworks")
 @Description("Launch a firework with any number of firework effects at a given location and flight duration. Use (../expressions/(ExprFireworkEffect)this expression) to create firework effects.")
@@ -30,7 +28,7 @@ public class EffLaunch extends Effect {
     protected void execute(Event event) {
         Number n = lifetime.getSingle(event);
         if (n == null) return;
-        for(Location l : loc.getAll(event)){
+        for (Location l : loc.getAll(event)) {
             Firework firework = l.getWorld().spawn(l, Firework.class);
             FireworkMeta fm = firework.getFireworkMeta();
             fm.setPower(n.intValue());
@@ -45,7 +43,7 @@ public class EffLaunch extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         effects = (Expression<FireworkEffect>) expressions[0];
         loc = (Expression<Location>) expressions[1];

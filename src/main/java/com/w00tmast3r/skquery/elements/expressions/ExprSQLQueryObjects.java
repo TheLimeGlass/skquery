@@ -8,10 +8,8 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.sql.ScriptCredentials;
-
 import org.bukkit.event.Event;
 
 import java.sql.ResultSet;
@@ -27,7 +25,7 @@ public class ExprSQLQueryObjects extends SimpleExpression<Object> {
     @Override
     protected Object[] get(Event event) {
         try {
-        	ResultSet q = query.getSingle(event);
+            ResultSet q = query.getSingle(event);
             String c = column.getSingle(event);
             if (q == null || c == null) return null;
             ArrayList<Object> output = new ArrayList<>();
@@ -62,7 +60,7 @@ public class ExprSQLQueryObjects extends SimpleExpression<Object> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         if (ScriptCredentials.get(ScriptLoader.currentScript.getFile()).getConnection() == null) {
             Skript.error("Database features are disabled until the script has SQL credentials associated with it.", ErrorQuality.SEMANTIC_ERROR);

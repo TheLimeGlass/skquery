@@ -13,7 +13,7 @@ public class EvtCustomEffects extends SkriptEvent {
     private String execute;
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Literal<?>[] args, int matchedPattern, SkriptParser.ParseResult parseResult) {
         String s = ((Literal<String>) args[0]).getSingle();
         if (!EffCustomEffect.getCustom().contains(s)) {

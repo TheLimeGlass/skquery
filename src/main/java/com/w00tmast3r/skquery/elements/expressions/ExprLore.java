@@ -3,15 +3,13 @@ package com.w00tmast3r.skquery.elements.expressions;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
-
+import com.w00tmast3r.skquery.api.PropertyFrom;
+import com.w00tmast3r.skquery.api.PropertyTo;
+import com.w00tmast3r.skquery.api.UsePropertyPatterns;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import com.w00tmast3r.skquery.api.PropertyFrom;
-import com.w00tmast3r.skquery.api.PropertyTo;
-import com.w00tmast3r.skquery.api.UsePropertyPatterns;
 
 import java.util.Arrays;
 
@@ -29,9 +27,9 @@ public class ExprLore extends SimplePropertyExpression<ItemStack, String> {
         String re = "";
         boolean fs = true;
         try {
-            if(!itemStack.getItemMeta().hasLore()) return "";
-            for(String s : itemStack.getItemMeta().getLore()){
-                if(fs) re = s;
+            if (!itemStack.getItemMeta().hasLore()) return "";
+            for (String s : itemStack.getItemMeta().getLore()) {
+                if (fs) re = s;
                 else re += "||" + s;
                 fs = false;
             }
@@ -42,12 +40,12 @@ public class ExprLore extends SimplePropertyExpression<ItemStack, String> {
     }
 
     @SuppressWarnings("incomplete-switch")
-	@Override
+    @Override
     public void change(final Event e, final Object[] delta, final Changer.ChangeMode mode) throws UnsupportedOperationException {
         String l = delta == null ? "" : (String) delta[0];
         ItemStack i = getExpr().getSingle(e);
         ItemMeta m = i.getItemMeta();
-        if(i.getType() == Material.AIR) return;
+        if (i.getType() == Material.AIR) return;
         switch (mode) {
             case SET:
                 m.setLore(Arrays.asList(l.split("\\|\\|")));
@@ -59,7 +57,7 @@ public class ExprLore extends SimplePropertyExpression<ItemStack, String> {
         }
     }
 
-	@Override
+    @Override
     public Class<?>[] acceptChange(Changer.ChangeMode mode) {
         if (mode == Changer.ChangeMode.SET || mode == Changer.ChangeMode.RESET)
             return CollectionUtils.array(String.class);

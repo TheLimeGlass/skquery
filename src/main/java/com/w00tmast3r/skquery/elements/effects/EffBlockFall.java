@@ -6,13 +6,11 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Reflection;
-
 import org.bukkit.Location;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.event.Event;
@@ -34,13 +32,13 @@ public class EffBlockFall extends Effect {
     private Expression<Location> loc;
     private boolean breaks, damages;
 
-    @SuppressWarnings({ "deprecation" })
-	@Override
+    @SuppressWarnings({"deprecation"})
+    @Override
     protected void execute(Event event) {
         ItemType t = type.getSingle(event);
-        if(t == null) return;
-        for(Location locs : loc.getArray(event)) {
-            for(ItemStack i : t.getAll()){
+        if (t == null) return;
+        for (Location locs : loc.getArray(event)) {
+            for (ItemStack i : t.getAll()) {
                 FallingBlock block = locs.getWorld().spawnFallingBlock(locs, i.getType(), (byte) i.getDurability());
                 EffSpawn.lastSpawned = block;
                 if (damages) {
@@ -64,7 +62,7 @@ public class EffBlockFall extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         type = (Expression<ItemType>) expressions[0];
         loc = (Expression<Location>) expressions[1];

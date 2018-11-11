@@ -5,13 +5,11 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.TriggerItem;
 import ch.njol.util.Kleenean;
-
-import org.bukkit.event.Event;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
+import org.bukkit.event.Event;
 
 @Name("Escape Lines")
 @Description("Skip the execution of a certain number of lines.")
@@ -30,17 +28,16 @@ public class EffEscape extends Effect {
     protected TriggerItem walk(Event e) {
         debug(e, false);
         Number eli = esc.getSingle(e);
-        if(eli == null) return null;
+        if (eli == null) return null;
         int el = eli.intValue();
-        if(el <= 0) return getNext();
+        if (el <= 0) return getNext();
         TriggerItem item = getNext();
-        for(int i = 0; i < el; i++){
-            if(item == null) return null;
+        for (int i = 0; i < el; i++) {
+            if (item == null) return null;
             item = item.getNext();
         }
         return item;
     }
-
 
 
     @Override
@@ -49,7 +46,7 @@ public class EffEscape extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         esc = (Expression<Number>) expressions[0];
         return true;

@@ -4,11 +4,9 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.elements.expressions.ExprInput;
 import com.w00tmast3r.skquery.skript.LambdaEffect;
-
 import org.bukkit.event.Event;
 
 @Patterns("do [%-number% time[s]] %lambda%")
@@ -22,13 +20,13 @@ public class EffExecuteLambda extends Effect {
         LambdaEffect l = effect.getSingle(event);
         if (l == null) return;
         if (times != null) {
-        	for (int i = 0; i < times.getSingle(event).intValue() ; i++) {
-        		ExprInput.setInput(event, i);
-        		l.walk(event);
-        		ExprInput.removeInput(event);
-        	}
+            for (int i = 0; i < times.getSingle(event).intValue(); i++) {
+                ExprInput.setInput(event, i);
+                l.walk(event);
+                ExprInput.removeInput(event);
+            }
         } else {
-        	l.walk(event);
+            l.walk(event);
         }
     }
 
@@ -38,7 +36,7 @@ public class EffExecuteLambda extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         times = (Expression<Number>) expressions[0];
         effect = (Expression<LambdaEffect>) expressions[1];

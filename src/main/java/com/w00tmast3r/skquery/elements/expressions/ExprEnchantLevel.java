@@ -7,18 +7,16 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
-
+import com.w00tmast3r.skquery.api.Patterns;
 import org.bukkit.event.Event;
 import org.bukkit.event.enchantment.EnchantItemEvent;
-
-import com.w00tmast3r.skquery.api.Patterns;
 
 
 @Patterns("[the] enchant(ing|ment|) level")
 public class ExprEnchantLevel extends SimpleExpression<Integer> {
     @Override
     protected Integer[] get(Event event) {
-        return new Integer[] {((EnchantItemEvent) event).getExpLevelCost()};
+        return new Integer[]{((EnchantItemEvent) event).getExpLevelCost()};
     }
 
     @Override

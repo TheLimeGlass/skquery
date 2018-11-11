@@ -2,12 +2,10 @@ package com.w00tmast3r.skquery.elements.expressions;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
-
 import com.w00tmast3r.skquery.api.PropertyFrom;
 import com.w00tmast3r.skquery.api.PropertyTo;
 import com.w00tmast3r.skquery.api.UsePropertyPatterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Tameable;
@@ -24,7 +22,7 @@ public class ExprTameOwner extends SimplePropertyExpression<Entity, Player> {
 
     @Override
     public Player convert(Entity entity) {
-        return entity instanceof Tameable ? ((Tameable) entity).getOwner() instanceof Player ? (Player)((Tameable) entity).getOwner() : null : null;
+        return entity instanceof Tameable ? ((Tameable) entity).getOwner() instanceof Player ? (Player) ((Tameable) entity).getOwner() : null : null;
     }
 
     @Override
@@ -40,15 +38,15 @@ public class ExprTameOwner extends SimplePropertyExpression<Entity, Player> {
 
     @Override
     public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-        Player n = delta[0] == null ? null : (Player) delta[0] ;
+        Player n = delta[0] == null ? null : (Player) delta[0];
         switch (mode) {
             case SET:
-                for (Entity en : getExpr().getAll(e))  {
+                for (Entity en : getExpr().getAll(e)) {
                     if (en instanceof Tameable) ((Tameable) en).setOwner(n);
                 }
                 break;
             case RESET:
-                for (Entity en : getExpr().getAll(e))  {
+                for (Entity en : getExpr().getAll(e)) {
                     if (en instanceof Tameable) ((Tameable) en).setOwner(null);
                 }
             case ADD:

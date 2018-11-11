@@ -8,7 +8,8 @@ public class BiValue<T1, T2> implements Serializable {
     private T1 first;
     private T2 second;
 
-    protected BiValue() {}
+    protected BiValue() {
+    }
 
     public BiValue(T1 first, T2 second) {
         this.first = first;
@@ -37,7 +38,7 @@ public class BiValue<T1, T2> implements Serializable {
     }
 
     @SuppressWarnings("rawtypes")
-	@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

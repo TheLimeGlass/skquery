@@ -11,7 +11,6 @@ import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.elements.events.lang.FunctionEvent;
 import com.w00tmast3r.skquery.elements.events.lang.ReturnEvent;
-
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
@@ -35,7 +34,7 @@ public class EffAccess extends Effect implements Listener {
     @Override
     protected TriggerItem walk(Event e) {
         String c = cause.getSingle(e);
-        if(c == null) return null;
+        if (c == null) return null;
         Bukkit.getPluginManager().registerEvents(this, SkQuery.getInstance());
         storedEvent = e;
         next = getNext();
@@ -57,7 +56,7 @@ public class EffAccess extends Effect implements Listener {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         if (i == 0) {
             cause = (Expression<String>) expressions[0];

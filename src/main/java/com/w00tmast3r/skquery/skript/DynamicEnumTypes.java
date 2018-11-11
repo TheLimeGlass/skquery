@@ -15,13 +15,13 @@ public class DynamicEnumTypes {
 
     private static int current = 1;
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void register() {
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static void register() {
         try {
             File dir = new File(Skript.getInstance().getDataFolder().getAbsolutePath() + File.separator + Skript.SCRIPTSFOLDER);
             assert dir.exists();
             for (File file : dir.listFiles()) {
-                if (file != null && !file.isDirectory() && file.getName().substring(file.getName().lastIndexOf('.') + 1).equalsIgnoreCase("skt") ) {
+                if (file != null && !file.isDirectory() && file.getName().substring(file.getName().lastIndexOf('.') + 1).equalsIgnoreCase("skt")) {
                     Class c = Class.forName("com.w00tmast3r.skquery.skript.DummyClasses$_" + current++);
                     ArrayList<String> patterns = new ArrayList<>();
                     BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -114,10 +114,10 @@ public class DynamicEnumTypes {
                         return false;
                     }
 
-					@Override
-					protected boolean canBeInstantiated() {
-						return false;
-					}
+                    @Override
+                    protected boolean canBeInstantiated() {
+                        return false;
+                    }
                 }));
     }
 }

@@ -2,12 +2,10 @@ package com.w00tmast3r.skquery.elements.expressions;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
-
 import com.w00tmast3r.skquery.api.PropertyFrom;
 import com.w00tmast3r.skquery.api.PropertyTo;
 import com.w00tmast3r.skquery.api.UsePropertyPatterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
@@ -22,7 +20,7 @@ public class ExprLandBoats extends SimplePropertyExpression<Entity, Boolean> {
     }
 
     @SuppressWarnings("deprecation")
-	@Override
+    @Override
     public Boolean convert(Entity entity) {
         return entity instanceof Boat ? ((Boat) entity).getWorkOnLand() : null;
     }
@@ -39,17 +37,17 @@ public class ExprLandBoats extends SimplePropertyExpression<Entity, Boolean> {
     }
 
     @SuppressWarnings("deprecation")
-	@Override
+    @Override
     public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
         boolean b = delta != null && (Boolean) delta[0];
         switch (mode) {
             case SET:
-                for (Entity en : getExpr().getAll(e))  {
+                for (Entity en : getExpr().getAll(e)) {
                     if (en instanceof Boat) ((Boat) en).setWorkOnLand(b);
                 }
                 break;
             case RESET:
-                for (Entity en : getExpr().getAll(e))  {
+                for (Entity en : getExpr().getAll(e)) {
                     if (en instanceof Boat) ((Boat) en).setWorkOnLand(false);
                 }
             case ADD:

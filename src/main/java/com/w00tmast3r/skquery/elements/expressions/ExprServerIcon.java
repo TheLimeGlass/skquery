@@ -9,12 +9,10 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-
+import com.w00tmast3r.skquery.api.Patterns;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.server.ServerListPingEvent;
-
-import com.w00tmast3r.skquery.api.Patterns;
 
 import java.awt.image.BufferedImage;
 
@@ -43,7 +41,7 @@ public class ExprServerIcon extends SimpleExpression<BufferedImage> {
 
     @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        if(!ScriptLoader.isCurrentEvent(ServerListPingEvent.class)) {
+        if (!ScriptLoader.isCurrentEvent(ServerListPingEvent.class)) {
             Skript.error("Cannot use server icon expression outside of a server ping event", ErrorQuality.SEMANTIC_ERROR);
             return false;
         }
@@ -59,9 +57,9 @@ public class ExprServerIcon extends SimpleExpression<BufferedImage> {
         }
     }
 
-	@Override
+    @Override
     public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        if(mode == Changer.ChangeMode.SET) return CollectionUtils.array(BufferedImage.class);
+        if (mode == Changer.ChangeMode.SET) return CollectionUtils.array(BufferedImage.class);
         return null;
     }
 }

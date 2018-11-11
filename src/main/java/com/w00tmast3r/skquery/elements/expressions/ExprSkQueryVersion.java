@@ -7,7 +7,6 @@ import ch.njol.util.Kleenean;
 import com.w00tmast3r.skquery.SkQuery;
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
 
 @Patterns("skquery version")

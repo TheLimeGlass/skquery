@@ -4,14 +4,12 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 
 @Name("Visibility")
 @Description("Show or hide players from each other")
@@ -24,7 +22,7 @@ public class EffPlayerVisibility extends Effect {
     private int match;
 
     @SuppressWarnings("deprecation")
-	@Override
+    @Override
     protected void execute(Event event) {
         for (Player tr : t.getAll(event)) {
             for (Player sr : s.getAll(event)) {
@@ -41,7 +39,7 @@ public class EffPlayerVisibility extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         t = (Expression<Player>) expressions[0];
         s = (Expression<Player>) expressions[1];

@@ -4,12 +4,11 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.skript.Markup;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -20,6 +19,27 @@ public class ExprKeyString extends SimpleExpression<String> {
 
     private Expression<Number> length;
     private Expression<Markup> charset;
+
+    public static String getKey(int length, String charset) {
+        ArrayList<ArrayList<Integer>> charranges = new ArrayList<>();
+        Pattern regex = Pattern.compile("(.)-(.)");
+        Matcher m = regex.matcher(charset);
+        while (m.find()) {
+            ArrayList<Integer> range = new ArrayList<>();
+            int first = m.group(1).charAt(0);
+            int second = m.group(2).charAt(0);
+            range.add(Math.min(first, second));
+            range.add(Math.max(first, second));
+            charranges.add(range);
+        }
+        Random rng = new Random();
+        String out = "";
+        while (0 < length--) {
+            ArrayList<Integer> current = charranges.get(rng.nextInt(charranges.size()));
+            out += Character.toString((char) (rng.nextInt((current.get(1) - current.get(0)) + 1) + current.get(0)));
+        }
+        return out;
+    }
 
     @Override
     protected String[] get(Event event) {
@@ -47,31 +67,10 @@ public class ExprKeyString extends SimpleExpression<String> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         length = (Expression<Number>) expressions[0];
         charset = (Expression<Markup>) expressions[1];
         return true;
-    }
-
-    public static String getKey(int length, String charset) {
-        ArrayList<ArrayList<Integer>> charranges = new ArrayList<>();
-        Pattern regex = Pattern.compile("(.)-(.)");
-        Matcher m = regex.matcher(charset);
-        while (m.find()) {
-            ArrayList<Integer> range = new ArrayList<>();
-            int first = m.group(1).charAt(0);
-            int second = m.group(2).charAt(0);
-            range.add(Math.min(first, second));
-            range.add(Math.max(first, second));
-            charranges.add(range);
-        }
-        Random rng = new Random();
-        String out = "";
-        while (0 < length--) {
-            ArrayList<Integer> current = charranges.get(rng.nextInt(charranges.size()));
-            out += Character.toString((char)(rng.nextInt((current.get(1) - current.get(0)) + 1) + current.get(0)));
-        }
-        return out;
     }
 }

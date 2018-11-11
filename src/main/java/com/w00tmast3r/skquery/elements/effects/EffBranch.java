@@ -5,13 +5,11 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.TriggerItem;
 import ch.njol.util.Kleenean;
-
-import org.bukkit.event.Event;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
+import org.bukkit.event.Event;
 
 @Name("Branch")
 @Description("Execute the following code X times. Useful for testing probabilities without requiring a loop and indentation.")
@@ -30,14 +28,13 @@ public class EffBranch extends Effect {
     protected TriggerItem walk(Event e) {
         debug(e, false);
         Number bv = br.getSingle(e);
-        if(bv == null) return null;
+        if (bv == null) return null;
         int b = bv.intValue();
-        for(int i = 0; i < b; i++){
+        for (int i = 0; i < b; i++) {
             TriggerItem.walk(getNext(), e);
         }
         return null;
     }
-
 
 
     @Override
@@ -46,7 +43,7 @@ public class EffBranch extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         br = (Expression<Number>) expressions[0];
         return true;

@@ -76,11 +76,11 @@ public class CuboidRegion implements Iterable<Block> {
         };
     }
 
-    public Vector min(){
+    public Vector min() {
         return new Vector(Math.min(point1.getBlockX(), point2.getBlockX()), Math.min(point1.getBlockY(), point2.getBlockY()), Math.min(point1.getBlockZ(), point2.getBlockZ()));
     }
 
-    public Vector max(){
+    public Vector max() {
         return new Vector(Math.max(point1.getBlockX(), point2.getBlockX()), Math.max(point1.getBlockY(), point2.getBlockY()), Math.max(point1.getBlockZ(), point2.getBlockZ()));
     }
 

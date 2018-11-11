@@ -22,21 +22,22 @@ public class CustomExpressionEvent extends Event implements MethodEvent, Returna
         this.superEvent = superEvent;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
+
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
-    public static HandlerList getHandlerList() {
-        return handlers;
-    }
     @Override
     public String getMatch() {
         return match;
     }
 
     @Override
-    public Expression<?>[] getArgs(){
+    public Expression<?>[] getArgs() {
         return args;
     }
 
@@ -57,6 +58,7 @@ public class CustomExpressionEvent extends Event implements MethodEvent, Returna
     @Override
     public void setReturn(Object[] returnValue) {
         if (returnValue.getClass().getComponentType().isAssignableFrom(expectedOutput)) this.returnValue = returnValue;
-        else Skript.error(Collect.toString(returnValue) + " is not of the expected type, " + expectedOutput.getSimpleName());
+        else
+            Skript.error(Collect.toString(returnValue) + " is not of the expected type, " + expectedOutput.getSimpleName());
     }
 }

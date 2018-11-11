@@ -14,8 +14,8 @@ public class EvtAttachCompleter extends SkriptEvent {
 
     private String command;
 
-    @SuppressWarnings({ "unchecked" })
-	@Override
+    @SuppressWarnings({"unchecked"})
+    @Override
     public boolean init(Literal<?>[] args, int matchedPattern, SkriptParser.ParseResult parseResult) {
         String s = ((Literal<String>) args[0]).getSingle();
         if (s.startsWith("/") && s.length() > 1) s = s.substring(1);

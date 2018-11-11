@@ -10,7 +10,6 @@ import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.elements.effects.base.OptionsPragma;
 import com.w00tmast3r.skquery.util.CancellableBukkitTask;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
@@ -31,7 +30,7 @@ public class EffOptionDeveloperMode extends OptionsPragma {
         lastUpdated = executingScript.lastModified();
         CancellableBukkitTask task = new CancellableBukkitTask() {
             @SuppressWarnings("deprecation")
-			@Override
+            @Override
             public void run() {
                 if (lastUpdated != executingScript.lastModified()) {
                     Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7[&6skQuery&7] &r(Dev Mode) Starting auto-reload of script '" + executingScript.getName() + "'"));

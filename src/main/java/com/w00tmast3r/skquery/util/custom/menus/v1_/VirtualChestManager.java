@@ -26,8 +26,19 @@ public class VirtualChestManager implements Listener {
         this.commands = commands;
     }
 
+    public static void startListener() {
+        //    Bukkit.getPluginManager().registerEvents(new Listener() {
+        //        @EventHandler
+        //        public void onInventoryClick(InventoryClickEvent e) {
+        //            if (e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR && e.getCurrentItem().getItemMeta() != null && e.getCurrentItem().getItemMeta().getLore().contains(ChatColor.translateAlternateColorCodes('&', "&0&0&0&0&0&0&0&0"))) {
+        //                e.setCurrentItem(null);
+        //            }
+        //        }
+        //    }, SkriptPlus.me);
+    }
+
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent e){
+    public void onInventoryClick(InventoryClickEvent e) {
         if (e.getCurrentItem() != null
                 && e.getCurrentItem().getType() != Material.AIR
                 && e.getInventory().getType() == InventoryType.CHEST
@@ -36,35 +47,25 @@ public class VirtualChestManager implements Listener {
                 && e.getInventory().getName().equalsIgnoreCase(inventoryName)
                 && e.getWhoClicked().getName().equalsIgnoreCase(player)) {
             e.setCancelled(true);
-            safeClose((Player)e.getWhoClicked());
-            if(commands[e.getSlot()] != null) for(String s : commands[e.getSlot()]) Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), s);
+            safeClose((Player) e.getWhoClicked());
+            if (commands[e.getSlot()] != null) for (String s : commands[e.getSlot()])
+                Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), s);
             HandlerList.unregisterAll(this);
         }
     }
 
     @EventHandler
-    public void onInventoryClose(InventoryCloseEvent e){
-        if(e.getPlayer().getName().equalsIgnoreCase(player) && e.getInventory().getName().equalsIgnoreCase(inventoryName))
+    public void onInventoryClose(InventoryCloseEvent e) {
+        if (e.getPlayer().getName().equalsIgnoreCase(player) && e.getInventory().getName().equalsIgnoreCase(inventoryName))
             HandlerList.unregisterAll(this);
     }
 
-    private void safeClose(final Player p){
+    private void safeClose(final Player p) {
         Bukkit.getScheduler().runTaskLater(SkQuery.getInstance(), new Runnable() {
             @Override
             public void run() {
                 p.getOpenInventory().close();
             }
         }, 1L);
-    }
-
-    public static void startListener() {
-    //    Bukkit.getPluginManager().registerEvents(new Listener() {
-    //        @EventHandler
-    //        public void onInventoryClick(InventoryClickEvent e) {
-    //            if (e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR && e.getCurrentItem().getItemMeta() != null && e.getCurrentItem().getItemMeta().getLore().contains(ChatColor.translateAlternateColorCodes('&', "&0&0&0&0&0&0&0&0"))) {
-    //                e.setCurrentItem(null);
-    //            }
-    //        }
-    //    }, SkriptPlus.me);
     }
 }

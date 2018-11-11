@@ -7,10 +7,8 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.sql.ScriptCredentials;
-
 import org.bukkit.event.Event;
 
 import java.io.File;
@@ -49,7 +47,7 @@ public class EffSQLUpdate extends Effect {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         if (ScriptCredentials.get(ScriptLoader.currentScript.getFile()).getConnection() == null) {
             Skript.error("Database features are disabled until the script has SQL credentials associated with it.", ErrorQuality.SEMANTIC_ERROR);

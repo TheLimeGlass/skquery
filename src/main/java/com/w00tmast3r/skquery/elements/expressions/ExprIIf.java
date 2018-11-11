@@ -9,10 +9,8 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.util.Utils;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.util.Collect;
-
 import org.bukkit.event.Event;
 
 @Patterns({"%boolean%[ ]?[ ]%object%[ ]:[ ]%object%"})
@@ -24,7 +22,7 @@ public class ExprIIf extends SimpleExpression<Object> {
 
     protected Object[] get(Event e) {
         Object[] array = Collect.newArray(returnType, 1);
-        if (Boolean.TRUE.equals(op.getSingle(e)))  array[0] = truePart.getSingle(e);
+        if (Boolean.TRUE.equals(op.getSingle(e))) array[0] = truePart.getSingle(e);
         else array[0] = falsePart.getSingle(e);
         return array;
     }
@@ -45,7 +43,7 @@ public class ExprIIf extends SimpleExpression<Object> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         op = (Expression<Boolean>) exprs[0];
         truePart = exprs[1];

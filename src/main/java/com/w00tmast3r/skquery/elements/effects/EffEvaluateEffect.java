@@ -5,13 +5,11 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
 import com.w00tmast3r.skquery.skript.Markup;
-
 import org.bukkit.event.Event;
 
 @Name("Evaluate Input Effect")
@@ -24,7 +22,7 @@ public class EffEvaluateEffect extends Effect {
 
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     protected void execute(Event event) {
         String pre = null;
         Object o = effect.getSingle(event);
@@ -37,7 +35,8 @@ public class EffEvaluateEffect extends Effect {
             ScriptLoader.deleteCurrentEvent();
             if (e == null) return;
             e.run(event);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     @Override

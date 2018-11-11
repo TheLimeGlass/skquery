@@ -4,15 +4,13 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-
+import com.w00tmast3r.skquery.api.PropertyFrom;
+import com.w00tmast3r.skquery.api.PropertyTo;
+import com.w00tmast3r.skquery.api.UsePropertyPatterns;
 import org.bukkit.Chunk;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.event.Event;
-
-import com.w00tmast3r.skquery.api.PropertyFrom;
-import com.w00tmast3r.skquery.api.PropertyTo;
-import com.w00tmast3r.skquery.api.UsePropertyPatterns;
 
 import java.util.ArrayList;
 
@@ -50,7 +48,7 @@ public class ExprTileEntities extends SimpleExpression<Block> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         chunk = (Expression<Chunk>) expressions[0];
         return true;

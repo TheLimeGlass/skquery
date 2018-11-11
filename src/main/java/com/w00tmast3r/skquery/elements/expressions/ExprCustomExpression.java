@@ -7,13 +7,12 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.util.Kleenean;
-
 import com.w00tmast3r.skquery.api.Disabled;
 import com.w00tmast3r.skquery.elements.events.lang.CustomExpressionEvent;
 import com.w00tmast3r.skquery.util.BiValue;
-
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -27,6 +26,27 @@ public class ExprCustomExpression extends SimpleExpression<Object> {
     private Expression<?>[] expressions;
     private String execute;
     private int matchedPattern;
+
+    public static void addAll(Collection<Map.Entry<String, BiValue<Object, Boolean>>> effects) {
+        for (Map.Entry<String, BiValue<Object, Boolean>> effect : effects) {
+            if (!entries.contains(effect.getKey())) {
+                entries.add(effect.getKey());
+                custom.put(custom.size(), new BiValue<>(effect.getKey(), effect.getValue()));
+            }
+        }
+    }
+
+    public static ArrayList<String> getEntries() {
+        return entries;
+    }
+
+    public static HashMap<Integer, BiValue<String, BiValue<Object, Boolean>>> getCustom() {
+        return custom;
+    }
+
+    public static void register() {
+        Skript.registerExpression(ExprCustomExpression.class, Object.class, ExpressionType.PROPERTY, entries.toArray(new String[entries.size()]));
+    }
 
     @Override
     protected Object[] get(Event e) {
@@ -66,26 +86,5 @@ public class ExprCustomExpression extends SimpleExpression<Object> {
         expressions = exprs;
         execute = custom.get(matchedPattern).getFirst();
         return true;
-    }
-
-    public static void addAll(Collection<Map.Entry<String, BiValue<Object, Boolean>>> effects) {
-        for (Map.Entry<String, BiValue<Object, Boolean>> effect : effects) {
-            if (!entries.contains(effect.getKey())) {
-                entries.add(effect.getKey());
-                custom.put(custom.size(), new BiValue<>(effect.getKey(), effect.getValue()));
-            }
-        }
-    }
-
-    public static ArrayList<String> getEntries() {
-        return entries;
-    }
-
-    public static HashMap<Integer, BiValue<String, BiValue<Object, Boolean>>> getCustom() {
-        return custom;
-    }
-
-    public static void register() {
-        Skript.registerExpression(ExprCustomExpression.class, Object.class, ExpressionType.PROPERTY, entries.toArray(new String[entries.size()]));
     }
 }
