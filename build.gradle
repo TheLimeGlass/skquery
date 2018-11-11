@@ -21,9 +21,8 @@ repositories {
         url "https://raw.githubusercontent.com/bensku/mvn-repo/master"
     }
 
-    //Elmakers
     maven {
-        url "http://maven.elmakers.com/repository/"
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
     }
 }
 

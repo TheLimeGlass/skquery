@@ -8,11 +8,8 @@ import com.w00tmast3r.skquery.api.Description;
 import com.w00tmast3r.skquery.api.Examples;
 import com.w00tmast3r.skquery.api.Name;
 import com.w00tmast3r.skquery.api.Patterns;
-import com.w00tmast3r.skquery.util.Reflection;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
-
-import java.lang.reflect.InvocationTargetException;
 
 @Name("Play Raw Sound")
 @Description("Imitates the functionality of the /playsound command, without the ability to specify target players.")
@@ -31,14 +28,9 @@ public class EffCustomSound extends Effect {
         float p = pit.getSingle(event).floatValue();
         float v = vol.getSingle(event).floatValue();
         if (s == null || l == null) return;
+
         for (Location fl : l) {
-            try {
-                Class<?> craftWorldClass = Reflection.getOBCClass("CraftWorld");
-                Object worldServer = craftWorldClass.getMethod("getHandle").invoke(fl.getWorld());
-                worldServer.getClass().getMethod("makeSound", double.class, double.class, double.class, String.class, float.class, float.class).invoke(worldServer, fl.getX(), fl.getY(), fl.getZ(), s, p, v);
-            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
+            fl.getWorld().playSound(fl, s, v, p);
         }
     }
 
