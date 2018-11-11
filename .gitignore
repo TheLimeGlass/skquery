@@ -2,3 +2,5 @@
 build/
 .gradle/
 SkQuery.iml
+.classpath
+.project
