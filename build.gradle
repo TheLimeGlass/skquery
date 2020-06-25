@@ -38,7 +38,7 @@ dependencies {
 	implementation (group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.annotation', version: '2.2.400')
 
 	//Spigot/Bukkit
-	implementation (group: 'org.spigotmc', name: 'spigot-api', version: '1.15.2-R0.1-SNAPSHOT')
+	implementation (group: 'org.spigotmc', name: 'spigot-api', version: '1.16.1-R0.1-SNAPSHOT')
 
 	//Skript
 	implementation (group: 'com.github.SkriptLang', name: 'Skript', version: '2.4-beta8') {
